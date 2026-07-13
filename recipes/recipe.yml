@@ -5,7 +5,8 @@ name: fedora-niri-atomic
 description: A minimal Niri + Noctalia atomic spin built on UBlue base.
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/base-main
+#base-image: ghcr.io/ublue-os/base-main
+base-image: ghcr.io/ublue-os/bluefin
 image-version: latest
 
 # module configuration, executed in order
@@ -27,12 +28,7 @@ modules:
         - niri
         - xorg-x11-server-Xwayland
         - noctalia
-        - sddm
         - kitty
-        - gnome-disk-utility
-        - btop
-        - fastfetch
-        - bazaar
     remove:
       packages:
         # example: removing firefox (in favor of the flatpak)
@@ -40,11 +36,6 @@ modules:
         - firefox
         - firefox-langpacks # also remove firefox dependency (not required for all packages, this is a special case)
         - gnome-software
-
-  - type: systemd
-    system:
-      enabled:
-        - sddm.service
 
   - type: default-flatpaks
     configurations:
