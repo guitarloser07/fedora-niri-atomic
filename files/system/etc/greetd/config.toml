@@ -1,0 +1,10 @@
+[terminal]
+# The console number where the login screen will appear
+vt = 1
+
+[default_session]
+# Launch tuigreet. It will look for Niri in /usr/share/wayland-sessions/ automatically
+command = "tuigreet --time --remember --cmd niri"
+
+# The system user created by the greetd package to run the login TUI safely
+user = "greeter"
