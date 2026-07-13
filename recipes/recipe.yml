@@ -27,7 +27,7 @@ modules:
         - niri
         - xorg-x11-server-Xwayland
         - noctalia
-        - noctalia-greeter
+        - tuigreet
         - greetd
         - kitty
         - gnome-disk-utility
