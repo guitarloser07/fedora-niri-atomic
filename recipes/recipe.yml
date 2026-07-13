@@ -42,9 +42,9 @@ modules:
         - gnome-software
 
   - type: systemd
-      system:
-        enabled:
-          - sddm.service
+    system:
+      enabled:
+        - sddm.service
 
   - type: default-flatpaks
     configurations:
