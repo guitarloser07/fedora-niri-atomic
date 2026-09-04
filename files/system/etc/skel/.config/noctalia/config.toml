@@ -5,7 +5,7 @@ builtin = "Gruvbox"
 
 [theme.templates]
 enable_builtin_templates = true
-builtin_ids             = ["kitty", "gtk3", "gtk4"]
+builtin_ids             = ["kitty", "gtk3", "gtk4", "qt"]
 
 [bar.main]
 position              = "top"
