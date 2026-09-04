@@ -26,6 +26,10 @@ layout {
     // }
 
     // center-focused-column "never"
+
+    focus-ring {
+        width 2
+    }
 }
 
 // ── Keybinds ──

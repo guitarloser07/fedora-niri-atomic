@@ -1,0 +1,16 @@
+[theme]
+mode    = "dark"
+source  = "builtin"
+builtin = "Gruvbox"
+
+[bar.main]
+position              = "top"
+margin_h              = 0
+margin_edge           = 0
+radius                = 0
+concave_edge_corners  = false
+
+[wallpaper]
+enabled   = true
+directory = "/usr/share/backgrounds"
+fill_mode = "cover"
