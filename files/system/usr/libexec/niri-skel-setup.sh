@@ -5,9 +5,10 @@
 SKEL_DIR="/etc/skel/.config"
 CONFIG_DIR="$HOME/.config"
 
-app="noctalia"
-src="$SKEL_DIR/$app"
-dest="$CONFIG_DIR/$app"
-if [ -d "$src" ] && [ ! -d "$dest" ]; then
-    cp -r "$src" "$dest"
-fi
+for app in noctalia kitty; do
+    src="$SKEL_DIR/$app"
+    dest="$CONFIG_DIR/$app"
+    if [ -d "$src" ] && [ ! -d "$dest" ]; then
+        cp -r "$src" "$dest"
+    fi
+done
