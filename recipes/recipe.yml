@@ -54,7 +54,7 @@ modules:
           - org.gnome.Connections
       - scope: user # Also add Flathub user repo, but no user packages
 
-  - type: scripts
+  - type: script
     scripts:
       - enable-skel-setup.sh
 
