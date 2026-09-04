@@ -1,5 +1,5 @@
 [Unit]
-Description=Copy default noctalia and kitty configs on first login
+Description=Copy default noctalia config on first login
 After=graphical-session.target
 
 [Service]
