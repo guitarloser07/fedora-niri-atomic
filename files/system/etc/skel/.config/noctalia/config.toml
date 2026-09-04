@@ -25,3 +25,7 @@ end    = ["tray", "volume", "battery"]
 enabled   = true
 directory = "/usr/share/backgrounds"
 fill_mode = "cover"
+
+[theme.templates]
+enable_builtin_templates = true
+builtin_ids             = ["kitty"]
