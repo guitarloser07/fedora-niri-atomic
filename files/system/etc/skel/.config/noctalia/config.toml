@@ -5,10 +5,21 @@ builtin = "Gruvbox"
 
 [bar.main]
 position              = "top"
-margin_h              = 0
+thickness             = 28
+margin_ends           = 0
 margin_edge           = 0
 radius                = 0
 concave_edge_corners  = false
+padding               = 8
+widget_spacing        = 4
+shadow                = false
+capsule               = false
+background_opacity    = 1.0
+font_weight           = 500
+
+start  = ["launcher", "workspaces"]
+center = ["clock"]
+end    = ["tray", "volume", "battery"]
 
 [wallpaper]
 enabled   = true
