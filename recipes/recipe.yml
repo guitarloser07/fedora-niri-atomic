@@ -29,9 +29,6 @@ modules:
         - noctalia
         - kitty
         - gdm
-        - wayland
-        - libxkbcommon
-        - mesa-dri-drivers
     remove:
       packages:
         # example: removing firefox (in favor of the flatpak)
