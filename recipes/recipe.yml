@@ -54,4 +54,8 @@ modules:
           - org.gnome.Connections
       - scope: user # Also add Flathub user repo, but no user packages
 
+  - type: scripts
+    scripts:
+      - enable-skel-setup.sh
+
   - type: signing # this sets up the proper policy & signing files for signed images to work fully

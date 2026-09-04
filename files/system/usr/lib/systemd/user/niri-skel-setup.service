@@ -1,0 +1,11 @@
+[Unit]
+Description=Copy default niri/noctalia configs on first login
+After=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/niri-skel-setup.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=graphical-session.target
