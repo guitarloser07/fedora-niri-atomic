@@ -28,6 +28,10 @@ modules:
         - xorg-x11-server-Xwayland
         - noctalia
         - kitty
+        - gdm
+        - wayland
+        - libxkbcommon
+        - mesa-dri-drivers
     remove:
       packages:
         # example: removing firefox (in favor of the flatpak)
