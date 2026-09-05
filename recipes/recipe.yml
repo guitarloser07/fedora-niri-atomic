@@ -53,6 +53,7 @@ modules:
           - org.gnome.Calculator
           - org.gnome.TextEditor
           - org.gnome.Connections
+          - io.github.kolunmi.Bazaar
       - scope: user # Also add Flathub user repo, but no user packages
 
   - type: script
