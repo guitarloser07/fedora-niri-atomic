@@ -31,6 +31,9 @@ modules:
         - gdm
         - btop
         - nautilus
+      exclude:
+        - fuzzel
+        - alacritty
     remove:
       packages:
         # example: removing firefox (in favor of the flatpak)
