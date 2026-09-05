@@ -29,6 +29,8 @@ modules:
         - noctalia
         - kitty
         - gdm
+        - btop
+        - nautilus
     remove:
       packages:
         # example: removing firefox (in favor of the flatpak)
@@ -44,11 +46,10 @@ modules:
     configurations:
       - notify: true # Send notification after install/uninstall is finished (true/false)
         scope: system
-        # If no repo information is specified, Flathub will be used by default
+        remote: flathub # Explicit Flathub bazaar store for easy flatpak additions
         install: # system flatpaks we want all users to have and not remove
           - org.mozilla.firefox
           - org.gnome.Loupe
-          - org.gnome.Nautilus
           - org.gnome.Calculator
           - org.gnome.TextEditor
           - org.gnome.Connections

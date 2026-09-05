@@ -12,7 +12,7 @@ concave_edge_corners  = false
 
 [theme.templates]
 enable_builtin_templates = true
-builtin_ids             = ["kitty", "gtk3", "gtk4", "qt"]
+builtin_ids             = ["kitty", "gtk3", "gtk4", "qt", "btop", "niri"]
 
 [wallpaper]
 enabled   = true
