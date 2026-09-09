@@ -74,8 +74,4 @@ modules:
           - com.github.taiko2k.tauonmb
       - scope: user # Also add Flathub user repo, but no user packages
 
-  - type: script
-    scripts:
-      - enable-skel-setup.sh
-
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
