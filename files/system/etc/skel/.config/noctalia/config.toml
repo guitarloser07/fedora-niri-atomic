@@ -28,6 +28,11 @@ show_label = false
 [widget.bluetooth]
 show_label = false
 
+# Compact media widget: circular artwork only, never text.
+# Idle shows just the disc icon (no "Nothing playing" string).
+[widget.media]
+album_art_only = true
+
 [theme.templates]
 enable_builtin_templates   = true
 builtin_ids                = ["kitty", "gtk3", "gtk4", "qt", "btop", "niri"]
