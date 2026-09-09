@@ -13,6 +13,21 @@ for app in noctalia kitty gtk-3.0 gtk-4.0; do
     fi
 done
 
+# Seed a per-user Niri config from the system one on first login.
+# Noctalia's "niri" template writes its rendered colors to
+# ~/.config/niri/noctalia.kdl and expects the neighboring config.kdl to
+# include it (which ours does). Seeding the user copy keeps Noctalia from
+# creating an include-only config that would shadow the full system config.
+# Never overwrite existing user files.
+if [ -f /etc/niri/config.kdl ] && [ ! -f "$CONFIG_DIR/niri/config.kdl" ]; then
+    mkdir -p "$CONFIG_DIR/niri"
+    cp /etc/niri/config.kdl "$CONFIG_DIR/niri/config.kdl"
+fi
+if [ -f /etc/niri/noctalia.kdl ] && [ ! -f "$CONFIG_DIR/niri/noctalia.kdl" ]; then
+    mkdir -p "$CONFIG_DIR/niri"
+    cp /etc/niri/noctalia.kdl "$CONFIG_DIR/niri/noctalia.kdl"
+fi
+
 # Ensure square-corner GTK override is present even if Noctalia already
 # created ~/.config/gtk-*/gtk.css with only the noctalia.css import.
 for ver in gtk-3.0 gtk-4.0; do

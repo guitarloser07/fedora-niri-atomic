@@ -1,0 +1,9 @@
+// Placeholder for Noctalia's "niri" theme template.
+//
+// Noctalia renders its palette-synced colors (focus ring, border, shadow,
+// tab indicator, etc.) into a file named `noctalia.kdl` on every theme change,
+// and `config.kdl` includes it via `include "noctalia.kdl"`. This placeholder
+// exists so that include always resolves, including on first boot before
+// Noctalia has rendered anything yet. It is safe to leave in place:
+// Noctalia overwrites this file (or its per-user counterpart at
+// ~/.config/niri/noctalia.kdl) whenever the theme is applied.
