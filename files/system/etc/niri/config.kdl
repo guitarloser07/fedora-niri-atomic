@@ -285,7 +285,7 @@ hotkey-overlay {
 // Additionally, clients will be informed that they are tiled, removing some client-side rounded corners.
 // This option will also fix border/focus ring drawing behind some semitransparent windows.
 // After enabling or disabling this, you need to restart the apps for this to take effect.
-// prefer-no-csd
+prefer-no-csd
 
 // You can change the path where screenshots are saved.
 // A ~ at the front will be expanded to the home directory.
@@ -346,6 +346,20 @@ window-rule {
 /-window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
+}
+
+// Square corners to match the square focus ring and bar.
+window-rule {
+    geometry-corner-radius 0
+    clip-to-geometry true
+}
+
+// Noctalia Option 1: blurred overview wallpaper.
+// Places Noctalia's blurred/tinted backdrop copy in Niri's overview backdrop.
+// Requires [backdrop] enabled in the Noctalia config.
+layer-rule {
+    match namespace="^noctalia-backdrop"
+    place-within-backdrop true
 }
 
 binds {

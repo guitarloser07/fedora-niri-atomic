@@ -6,15 +6,43 @@ builtin = "Gruvbox"
 [bar.main]
 position              = "top"
 margin_h              = 0
+margin_ends           = 0
 margin_edge           = 0
 radius                = 0
 concave_edge_corners  = false
 
+# Icon-only bar widgets (no % / SSID / device names in the bar itself;
+# full details remain in tooltips and Control Center).
+[widget.volume]
+show_label = false
+
+[widget.network]
+show_label = false
+
+[widget.brightness]
+show_label = false
+
+[widget.battery]
+show_label = false
+
+[widget.bluetooth]
+show_label = false
+
 [theme.templates]
-enable_builtin_templates = true
-builtin_ids             = ["kitty", "gtk3", "gtk4", "qt", "btop", "niri"]
+enable_builtin_templates   = true
+builtin_ids                = ["kitty", "gtk3", "gtk4", "qt", "btop", "niri"]
+enable_community_templates = true
+community_ids              = ["tauon"]
 
 [wallpaper]
 enabled   = true
 directory = "/usr/share/backgrounds"
 fill_mode = "cover"
+
+# Blurred overview wallpaper (Niri Option 1).
+# Renders a blurred/tinted copy of the wallpaper for Niri's overview.
+# Requires the noctalia-backdrop layer-rule in the Niri config.
+[backdrop]
+enabled        = true
+blur_intensity = 0.5
+tint_intensity = 0.3

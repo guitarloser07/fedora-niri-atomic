@@ -22,6 +22,7 @@ modules:
       copr:
         - yalter/niri
         - ublue-os/packages
+        - pvermeer/sunshine
     install:
       packages:
         - niri
@@ -31,6 +32,15 @@ modules:
         - gdm
         - btop
         - nautilus
+        - ncdu
+        - neovim
+        - gnome-disk-utility
+        - sunshine
+        - openconnect
+        - NetworkManager-openconnect
+        - wireguard-tools
+        - yt-dlp
+        - testssl
       exclude:
         - fuzzel
         - alacritty
@@ -57,6 +67,11 @@ modules:
           - org.gnome.TextEditor
           - org.gnome.Connections
           - io.github.kolunmi.Bazaar
+          - com.github.PintaProject.Pinta
+          - org.localsend.localsend_app
+          - org.onlyoffice.desktopeditors
+          - com.moonlight_stream.Moonlight
+          - com.github.taiko2k.tauonmb
       - scope: user # Also add Flathub user repo, but no user packages
 
   - type: script
