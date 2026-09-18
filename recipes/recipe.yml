@@ -31,6 +31,8 @@ modules:
         - kitty
         - gdm
         - btop
+        - chezmoi
+        - fastfetch
         - nautilus
         - ncdu
         - neovim
