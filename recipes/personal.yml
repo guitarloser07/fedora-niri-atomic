@@ -1,0 +1,10 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+# image will be published to ghcr.io/guitarloser07/fedora-niri-atomic
+name: fedora-niri-atomic
+description: A minimal Niri + Noctalia atomic spin built on UBlue base. (Personal edition)
+base-image: ghcr.io/ublue-os/base-main
+image-version: latest
+
+modules:
+  - from-file: common.yml

@@ -1,0 +1,23 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+# image will be published to ghcr.io/guitarloser07/fedora-niri-atomic-work
+name: fedora-niri-atomic-work
+description: A minimal Niri + Noctalia atomic spin built on UBlue base. (Work edition)
+base-image: ghcr.io/ublue-os/base-main
+image-version: latest
+
+modules:
+  - from-file: common.yml
+
+  - type: default-flatpaks
+    configurations:
+      - notify: true
+        scope: system
+        remote: flathub
+        install: # work-only flatpaks
+          - com.microsoft.Edge
+          - org.apache.directory.studio
+          - io.beekeeperstudio.Studio
+          - org.onlyoffice.desktopeditors # also in common, listed here to make work intent explicit
+          - us.zoom.Zoom
+          - com.github.IsmaelMartinez.teams_for_linux
