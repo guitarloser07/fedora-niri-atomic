@@ -35,6 +35,7 @@ modules:
         - yt-dlp
         - testssl
         - ranger
+        - pipewire-alsa # ALSA bridge for cliamp audio on PipeWire systems
       exclude:
         - fuzzel
         - alacritty
@@ -67,5 +68,12 @@ modules:
           - com.moonlight_stream.Moonlight
           - com.github.taiko2k.tauonmb
       - scope: user # Also add Flathub user repo, but no user packages
+
+  - type: brew
+    brew-analytics: false # disable Homebrew telemetry
+
+  - type: script
+    scripts:
+      - install-cliamp.sh # installs bjarneo/cliamp prebuilt binary to /usr/bin (not in Fedora repos)
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
