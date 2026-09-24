@@ -72,8 +72,4 @@ modules:
   - type: brew
     brew-analytics: false # disable Homebrew telemetry
 
-  - type: script
-    scripts:
-      - install-cliamp.sh # installs bjarneo/cliamp prebuilt binary to /usr/bin (not in Fedora repos)
-
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
