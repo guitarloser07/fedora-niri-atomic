@@ -11,7 +11,7 @@ modules:
 
   - type: default-flatpaks
     configurations:
-      - notify: true
+      - notify: false
         scope: system
         remote: flathub
         install: # work-only flatpaks
