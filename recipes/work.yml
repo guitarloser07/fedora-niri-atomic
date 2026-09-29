@@ -9,6 +9,17 @@ image-version: latest
 modules:
   - from-file: common.yml
 
+  - type: dnf
+    install:
+      packages:
+        # Intel IPU7 MIPI camera stack (e.g. Dell Pro 14 Premium PA14250, ov08x40 sensor):
+        # - pipewire-plugin-libcamera exposes the camera to portal-aware apps as "Built-in Front Camera"
+        # - libcamera-ipa provides the SoftISP pipeline handler backing it
+        # - libcamera-tools provides `cam`/`qcam` for diagnostics
+        - pipewire-plugin-libcamera
+        - libcamera-ipa
+        - libcamera-tools
+
   - type: default-flatpaks
     configurations:
       - notify: false
