@@ -9,6 +9,11 @@ image-version: latest
 modules:
   - from-file: common.yml
 
+  - type: files
+    files:
+      - source: work-system
+        destination: / # work-only system files (v4l2loopback configs, wireplumber tweaks)
+
   - type: dnf
     install:
       packages:

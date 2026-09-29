@@ -7,8 +7,10 @@ Wants=pipewire.service
 # Single libcamera camera on this hardware, so libcamerasrc needs no camera-name.
 # /dev/video42 is pinned in modprobe.d/v4l2loopback.conf to avoid colliding
 # with the raw IPU nodes (/dev/video0-31).
+# Fixed 720p YUY2 caps: the native 3848x2176 stream is unusable for V4L2-only
+# apps (Zoom shows a blank feed) and wastes CPU in videoconvert.
 # NOTE: always-on while logged in, so the camera privacy LED stays lit.
-ExecStart=/usr/bin/gst-launch-1.0 libcamerasrc ! videoconvert ! v4l2sink device=/dev/video42
+ExecStart=/usr/bin/gst-launch-1.0 libcamerasrc ! videoconvert ! videoscale ! video/x-raw,width=1280,height=720,format=YUY2 ! v4l2sink device=/dev/video42
 Restart=on-failure
 RestartSec=5
 
