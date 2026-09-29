@@ -14,6 +14,8 @@ modules:
         - yalter/niri
         - ublue-os/packages
         - pvermeer/sunshine
+        - atim/lazygit
+        - lihaohong/yazi
     install:
       packages:
         - niri
@@ -22,6 +24,14 @@ modules:
         - kitty
         - gdm
         - btop
+        - bat
+        - playerctl # media-key binds in niri config depend on this
+        - ripgrep
+        - fd-find # provides the `fd` binary (Telescope/LazyVim dep)
+        - fzf
+        - git
+        - gh
+        - lazygit
         - chezmoi
         - fastfetch
         - nautilus
@@ -34,7 +44,7 @@ modules:
         - wireguard-tools
         - yt-dlp
         - testssl
-        - ranger
+        - yazi
         - pipewire-alsa # ALSA bridge for cliamp audio on PipeWire systems
       exclude:
         - fuzzel
@@ -46,13 +56,17 @@ modules:
         - fuzzel
         - alacritty
 
+  - type: fonts # JetBrainsMono Nerd Font for kitty (kitty.conf) + neovim icons
+    fonts:
+      nerd-fonts:
+        - JetBrainsMono
+
   - type: default-flatpaks
     configurations:
       - notify: false # Send notification after install/uninstall is finished (true/false)
         scope: system
         remote: flathub # Explicit Flathub bazaar store for easy flatpak additions
         install: # system flatpaks we want all users to have and not remove
-          - org.mozilla.firefox
           - org.gnome.Loupe
           - org.gnome.Calculator
           - org.gnome.TextEditor
