@@ -1,0 +1,16 @@
+[Unit]
+Description=Intel IPU7 libcamera to V4L2 loopback bridge (for V4L2-only apps like Zoom/Teams)
+After=pipewire.service
+Wants=pipewire.service
+
+[Service]
+# Single libcamera camera on this hardware, so libcamerasrc needs no camera-name.
+# /dev/video42 is pinned in modprobe.d/v4l2loopback.conf to avoid colliding
+# with the raw IPU nodes (/dev/video0-31).
+# NOTE: always-on while logged in, so the camera privacy LED stays lit.
+ExecStart=/usr/bin/gst-launch-1.0 libcamerasrc ! videoconvert ! v4l2sink device=/dev/video42
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

@@ -19,6 +19,25 @@ modules:
         - pipewire-plugin-libcamera
         - libcamera-ipa
         - libcamera-tools
+        # GStreamer bridge deps: feed libcamera into the v4l2loopback node
+        # for V4L2-only apps (Zoom, Teams). libcamerasrc lives in
+        # libcamera-gstreamer, v4l2sink in -good, videoconvert in -base.
+        - gstreamer1
+        - gstreamer1-plugins-base
+        - gstreamer1-plugins-good
+        - libcamera-gstreamer
+
+  - type: akmods
+    install:
+      # Prebuilt from ublue-os/akmods (atomic-safe; no DKMS/RPMFusion at runtime).
+      # Provides the /dev/video42 "IPU7-Camera" node (see modprobe.d config).
+      - v4l2loopback
+
+  - type: systemd
+    user:
+      enabled:
+        # Always-on bridge: libcamera -> /dev/video42 (see files/systemd/user/).
+        - ipu7-bridge.service
 
   - type: default-flatpaks
     configurations:
