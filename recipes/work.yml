@@ -63,6 +63,13 @@ modules:
         # v4l2-relayd@libcamerasrc.service from our drop-in config. Zero CPU
         # when idle; streams only while a V4L2 app holds the loopback device.
         - v4l2-relayd.service
+      masked:
+        # RPMFusion ships /etc/v4l2-relayd.d/icamerasrc.conf as a dangling
+        # symlink (-> /run/v4l2-relayd). The generator spawns a bogus
+        # v4l2-relayd@icamerasrc instance from it that crash-loops
+        # (empty device path -> GStreamer NULL-element asserts) until
+        # start-limit-hit. We use libcamerasrc, not icamerasrc: mask it.
+        - v4l2-relayd@icamerasrc.service
 
   - type: default-flatpaks
     configurations:
