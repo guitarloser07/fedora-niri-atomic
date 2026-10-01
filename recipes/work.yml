@@ -15,6 +15,10 @@ modules:
         destination: / # work-only system files (v4l2-relayd drop-in config)
 
   - type: dnf
+    repos:
+      # v4l2-relayd lives in RPMFusion free (not Fedora repos), so enable it
+      # explicitly instead of relying on whatever the base image ships.
+      nonfree: rpmfusion
     install:
       packages:
         # Intel IPU7 MIPI camera stack (e.g. Dell Pro 14 Premium PA14250, ov08x40 sensor):
@@ -28,7 +32,7 @@ modules:
         # Ubuntu 24.04 (v4l2-relayd 0.1.2, VIDEOSRC=icamerasrc, NV12 720p30).
         # Fedora has no icamerasrc/Intel CamHAL blobs, so the relay input is
         # libcamerasrc (SoftISP) via our /etc/v4l2-relayd.d/libcamerasrc.conf.
-        # v4l2-relayd comes from RPMFusion free (pre-enabled on uBlue base-main);
+        # v4l2-relayd comes from RPMFusion free (see repos above);
         # its GStreamer input deps are below: libcamerasrc in libcamera-gstreamer,
         # v4l2sink in -good, videoconvert in -base.
         - v4l2-relayd
