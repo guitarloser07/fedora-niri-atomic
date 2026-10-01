@@ -14,6 +14,21 @@ modules:
       - source: work-system
         destination: / # work-only system files (v4l2-relayd drop-in config)
 
+  - type: akmods
+    install:
+      # NOTE: this must run BEFORE the dnf module below. dnf's v4l2-relayd
+      # pulls RPMFusion's v4l2loopback, which hard-Requires v4l2loopback-kmod.
+      # With this prebuilt kmod already installed, that dep is satisfied;
+      # otherwise dnf pulls akmod-v4l2loopback, whose %post tries to compile
+      # a kmod inside the build container as root and fails the transaction.
+      # Prebuilt from ublue-os/akmods (atomic-safe; no DKMS/RPMFusion at runtime).
+      # v4l2-relayd (RPMFusion) Requires: v4l2loopback userspace configs and
+      # ships its own modprobe/modules-load for an "Intel MIPI Camera" node;
+      # this kmod provides the actual kernel module. The relay finds the node
+      # by card label, so no pinned video_nr is needed (avoids colliding with
+      # raw IPU nodes /dev/video0-31).
+      - v4l2loopback
+
   - type: dnf
     repos:
       # v4l2-relayd lives in RPMFusion free (not Fedora repos), so enable it
@@ -40,16 +55,6 @@ modules:
         - gstreamer1-plugins-base
         - gstreamer1-plugins-good
         - libcamera-gstreamer
-
-  - type: akmods
-    install:
-      # Prebuilt from ublue-os/akmods (atomic-safe; no DKMS/RPMFusion at runtime).
-      # v4l2-relayd (RPMFusion) Requires: v4l2loopback userspace configs and
-      # ships its own modprobe/modules-load for an "Intel MIPI Camera" node;
-      # this kmod provides the actual kernel module. The relay finds the node
-      # by card label, so no pinned video_nr is needed (avoids colliding with
-      # raw IPU nodes /dev/video0-31).
-      - v4l2loopback
 
   - type: systemd
     system:
