@@ -12,7 +12,7 @@ modules:
   - type: files
     files:
       - source: work-system
-        destination: / # work-only system files (v4l2loopback kmod configs)
+        destination: / # work-only system files (v4l2-relayd drop-in config)
 
   - type: dnf
     install:
@@ -24,9 +24,14 @@ modules:
         - pipewire-plugin-libcamera
         - libcamera-ipa
         - libcamera-tools
-        # GStreamer bridge deps: feed libcamera into the v4l2loopback node
-        # for V4L2-only apps (Zoom, Teams). libcamerasrc lives in
-        # libcamera-gstreamer, v4l2sink in -good, videoconvert in -base.
+        # On-demand V4L2 compat for V4L2-only apps (Zoom, Teams), mirroring
+        # Ubuntu 24.04 (v4l2-relayd 0.1.2, VIDEOSRC=icamerasrc, NV12 720p30).
+        # Fedora has no icamerasrc/Intel CamHAL blobs, so the relay input is
+        # libcamerasrc (SoftISP) via our /etc/v4l2-relayd.d/libcamerasrc.conf.
+        # v4l2-relayd comes from RPMFusion free (pre-enabled on uBlue base-main);
+        # its GStreamer input deps are below: libcamerasrc in libcamera-gstreamer,
+        # v4l2sink in -good, videoconvert in -base.
+        - v4l2-relayd
         - gstreamer1
         - gstreamer1-plugins-base
         - gstreamer1-plugins-good
@@ -35,14 +40,20 @@ modules:
   - type: akmods
     install:
       # Prebuilt from ublue-os/akmods (atomic-safe; no DKMS/RPMFusion at runtime).
-      # Provides the /dev/video42 "IPU7-Camera" node (see modprobe.d config).
+      # v4l2-relayd (RPMFusion) Requires: v4l2loopback userspace configs and
+      # ships its own modprobe/modules-load for an "Intel MIPI Camera" node;
+      # this kmod provides the actual kernel module. The relay finds the node
+      # by card label, so no pinned video_nr is needed (avoids colliding with
+      # raw IPU nodes /dev/video0-31).
       - v4l2loopback
 
   - type: systemd
-    user:
+    system:
       enabled:
-        # Always-on bridge: libcamera -> /dev/video42 (see files/systemd/user/).
-        - ipu7-bridge.service
+        # On-demand relay target: the generator spawns
+        # v4l2-relayd@libcamerasrc.service from our drop-in config. Zero CPU
+        # when idle; streams only while a V4L2 app holds the loopback device.
+        - v4l2-relayd.service
 
   - type: default-flatpaks
     configurations:
