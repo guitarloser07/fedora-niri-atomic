@@ -15,9 +15,8 @@ modules:
         destination: / # work-only system files (v4l2-relayd drop-in config)
 
   - type: akmods
-    base: main
+    nvidia-driver: nvidia-open
     install:
-      - nvidia-open
       # NOTE: this must run BEFORE the dnf module below. dnf's v4l2-relayd
       # pulls RPMFusion's v4l2loopback, which hard-Requires v4l2loopback-kmod.
       # With this prebuilt kmod already installed, that dep is satisfied;
